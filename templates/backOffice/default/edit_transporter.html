@@ -1,0 +1,25 @@
+{default_translation_domain domain='edittransporter'}
+<div class="title title-without-tabs clearfix">
+    {intl l="Change transporter"}
+</div>
+{form name="thelia.admin.edit.transporter"}
+    <form method="post" action="{url path="/admin/order/{$order_id}/edit-transporter"}" {form_enctype form=$form} class="clearfix">
+        {form_hidden_fields form=$form}
+        <div class="form-group">
+            {form_field form=$form field='transporter'}
+            <div class="control-group">
+                <label class="control-label" for="{$label_attr.for}">{intl l="Current transporter"}</label>
+                <select class="form-control" id="{$label_attr.for}" value="{$transporter_id}" {if $required}required="required"{/if} name="{$name}">
+                    {loop name="edit.transporter.delivery.loop" type="module" module_type=2}
+                        <option {if $transporter_id == $ID}selected="selected"{/if} value="{$ID}">{$TITLE}</option>
+                    {/loop}
+                </select>
+            </div>
+            {/form_field}
+        </div>
+
+        <button type="submit" class="form-submit-button btn btn-sm btn-default action-btn" title="{intl l='Change the transporter for this order'}" >
+            {intl l='Change transporter'}
+        </button>
+    </form>
+{/form}
